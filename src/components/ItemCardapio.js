@@ -3,24 +3,29 @@ import EditModal from "./EditModal";
 import logo from "../logo192.png";
 import { useState } from "react";
 
+//itens individuais
 function ItemCardapio(props) {
-  const [show, setShow] = useState(false);
-
+  //dados item
   const [id, setId] = useState(null);
   const [nome, setNome] = useState("");
   const [descricao, setDescricao] = useState("");
   const [valor, setValor] = useState("");
   const [categoria, setCategoria] = useState("");
 
+  //modal
+  const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  //botao deletar
   async function deleteBtnHandler() {
     console.log(props.id);
     await fetch("http://localhost:8080/api/item/" + props.id, {
       method: "DELETE",
     });
   }
+
+  //botao editar(abre modal de edicao)
   async function editBtnHandler() {
     handleShow();
 
@@ -36,6 +41,7 @@ function ItemCardapio(props) {
     console.log(props.id);
   }
 
+  //salvar edicao(botao dentro do modal)
   async function saveEditHandler(event) {
     event.preventDefault();
     const item = { id, nome, descricao, valor, categoria };
@@ -114,7 +120,6 @@ function ItemCardapio(props) {
               }}
             />
           </div>
-
           <button className="btn btn-outline-secondary">Salvar</button>
         </form>
       </EditModal>

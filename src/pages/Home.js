@@ -1,12 +1,5 @@
-import EditModal from "../components/EditModal";
-
 function Home() {
-  return (
-    <div>
-      sdfsdf
-      <EditModal />
-    </div>
-  );
+  return <div>Home</div>;
 }
 
 export default Home;

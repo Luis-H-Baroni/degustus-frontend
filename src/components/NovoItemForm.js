@@ -1,5 +1,6 @@
 import { useRef } from "react";
 
+//form para cadastrar novos itens
 function NovoItemForm(props) {
   const nomeInputRef = useRef();
   const descInputRef = useRef();

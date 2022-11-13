@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 
+//navbar
 function Header() {
   const location = useLocation();
 
@@ -22,7 +23,6 @@ function Header() {
       <nav className="navbar bg-light">
         <div className="container-fluid">
           <span className="navbar-brand mb-0 h1">Degustus</span>
-
           <span className="navbar-brand mb-0 h1">{getCurrentPage()}</span>
           <form className="d-flex">
             <Link to="/">

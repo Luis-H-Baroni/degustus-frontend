@@ -1,6 +1,7 @@
 import ItemCardapio from "./ItemCardapio";
 
 function Cardapio(props) {
+  //conjunto de itens do cardapio
   return (
     <div className="row row-cols-auto g-4">
       {props.itensCardapio.map((item) => (

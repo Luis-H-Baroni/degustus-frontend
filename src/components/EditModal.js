@@ -1,6 +1,7 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
+//modal de edicao
 function EditModal(props) {
   return (
     <Modal show={props.show} onHide={props.onHide}>

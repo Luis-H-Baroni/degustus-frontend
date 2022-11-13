@@ -1,11 +1,10 @@
 import Cardapio from "../components/Cardapio";
 import NovoItemForm from "../components/NovoItemForm";
 import { useEffect, useState } from "react";
-import styled from "styled-components";
 
 function CardapioPage() {
+  //traz todos os itens
   const [loadedPayload, setLoadedPayload] = useState([]);
-
   useEffect(() => {
     async function fetchData() {
       const itensCardapio = await fetch("http://localhost:8080/api/item");
@@ -15,12 +14,13 @@ function CardapioPage() {
     fetchData();
   }, [loadedPayload]);
 
+  //abre e fecha o form de novo item
   const [openedForm, setOpenedForm] = useState(false);
-
   function openForm() {
     openedForm ? setOpenedForm(false) : setOpenedForm(true);
   }
 
+  //adiciona novo item
   async function addItemHandler(itemPayload) {
     await fetch("http://localhost:8080/api/item", {
       method: "POST",
