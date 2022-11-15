@@ -5,12 +5,17 @@ import Cardapio from "./pages/Cardapio";
 import Funcionarios from "./pages/Funcionarios";
 import Empresas from "./pages/Empresas";
 import Home from "./pages/Home/Home.js";
+import Comandas from "./pages/Comanda";
+import Ordens from "./pages/Ordem";
 
 function App() {
   return (
     <div>
       <Header />
 
+      <Routes>
+        <Route path="/comandas" element={<Comandas />} />
+      </Routes>
       <Routes>
         <Route path="/empresas" element={<Empresas />} />
       </Routes>
