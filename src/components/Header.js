@@ -10,9 +10,9 @@ function Header() {
       default:
         return "Home";
       case "/cardapio":
-        return "Cardapio";
+        return "Cardápio";
       case "/funcionarios":
-        return "Funcionarios";
+        return "Funcionários";
       case "/empresas":
         return "Empresas";
     }
@@ -30,12 +30,12 @@ function Header() {
             </Link>
             <Link to="/cardapio">
               <button className="btn btn-outline-secondary me-2">
-                Cardapio
+                Cardápio
               </button>
             </Link>
             <Link to="/funcionarios">
               <button className="btn btn-outline-secondary me-2">
-                Funcionarios
+                Funcionários
               </button>
             </Link>
             <Link to="/empresas">

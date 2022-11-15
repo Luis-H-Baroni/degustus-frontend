@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import Cardapio from "./pages/Cardapio";
 import Funcionarios from "./pages/Funcionarios";
 import Empresas from "./pages/Empresas";
-import Home from "./pages/Home";
+import Home from "./pages/Home/Home.js";
 
 function App() {
   return (
