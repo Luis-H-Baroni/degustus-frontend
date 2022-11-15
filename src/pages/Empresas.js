@@ -1,30 +1,30 @@
-import Cardapio from "../components/cardapio/Cardapio";
-import NovoItemForm from "../components/cardapio/NovoItemForm";
+import Empresas from "../components/empresas/Empresas";
+import NovaEmpresaForm from "../components/empresas/NovaEmpresaForm";
 import { useEffect, useState } from "react";
 
-function CardapioPage() {
+function EmpresaPage() {
   //traz todos os itens
   const [loadedPayload, setLoadedPayload] = useState([]);
   useEffect(() => {
     async function fetchData() {
-      const itensCardapio = await fetch("http://localhost:8080/api/item");
-      const itensCardapioJson = await itensCardapio.json();
-      setLoadedPayload(itensCardapioJson);
+      const listaEmpresas = await fetch("http://localhost:8080/api/empresa");
+      const listaEmpresasJson = await listaEmpresas.json();
+      setLoadedPayload(listaEmpresasJson);
     }
     fetchData();
   }, [loadedPayload]);
 
-  //abre e fecha o form de novo item
+  //abre e fecha o form de novo empresa
   const [openedForm, setOpenedForm] = useState(false);
   function openForm() {
     openedForm ? setOpenedForm(false) : setOpenedForm(true);
   }
 
-  //adiciona novo item
-  async function addItemHandler(itemPayload) {
-    await fetch("http://localhost:8080/api/item", {
+  //adiciona novo empresa
+  async function addEmpresaHandler(empresaPayload) {
+    await fetch("http://localhost:8080/api/empresa", {
       method: "POST",
-      body: JSON.stringify(itemPayload),
+      body: JSON.stringify(empresaPayload),
       headers: {
         "Content-Type": "application/json",
       },
@@ -35,17 +35,17 @@ function CardapioPage() {
     <div className="container">
       <div className="row mt-4">
         <div className="col">
-          <Cardapio itensCardapio={loadedPayload} />
+          <Empresas listaEmpresas={loadedPayload} />
         </div>
         <div className="col-4">
           <button onClick={openForm} className="btn btn-outline-secondary me-2">
-            Novo Item
+            Nova Empresa
           </button>
-          {openedForm && <NovoItemForm onAddItem={addItemHandler} />}
+          {openedForm && <NovaEmpresaForm onAddEmpresa={addEmpresaHandler} />}
         </div>
       </div>
     </div>
   );
 }
 
-export default CardapioPage;
+export default EmpresaPage;

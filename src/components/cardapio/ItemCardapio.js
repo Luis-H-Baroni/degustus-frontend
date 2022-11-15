@@ -1,6 +1,6 @@
-import Card from "./Card";
-import EditModal from "./EditModal";
-import logo from "../logo192.png";
+import Card from "../Card";
+import EditModal from "../EditModal";
+import logo from "../../logo192.png";
 import { useState } from "react";
 
 //itens individuais

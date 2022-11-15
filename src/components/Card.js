@@ -2,7 +2,7 @@
 function Card(props) {
   return (
     <div className="card" style={{ width: "10rem" }}>
-      {props.children}
+      <div class="row g-0">{props.children}</div>
     </div>
   );
 }
