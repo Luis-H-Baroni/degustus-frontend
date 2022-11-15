@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-//form para cadastrar novos itens
+//form para cadastrar novos funcionarios
 function NovoFuncionarioForm(props) {
   const nomeInputRef = useRef();
   const sobrenomeInputRef = useRef();

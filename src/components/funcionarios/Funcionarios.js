@@ -1,7 +1,7 @@
 import Funcionario from "./Funcionario";
 
 function Funcionarios(props) {
-  //conjunto de itens do cardapio
+  //conjunto de funcionarios
   return (
     <div className="row row-cols-2 g-4">
       {props.listaFuncionarios.map((funcionario) => (

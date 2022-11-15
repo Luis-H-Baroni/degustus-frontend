@@ -3,7 +3,7 @@ import NovaEmpresaForm from "../components/empresas/NovaEmpresaForm";
 import { useEffect, useState } from "react";
 
 function EmpresaPage() {
-  //traz todos os itens
+  //traz todos as empresas
   const [loadedPayload, setLoadedPayload] = useState([]);
   useEffect(() => {
     async function fetchData() {

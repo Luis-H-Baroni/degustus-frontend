@@ -3,7 +3,7 @@ import EditModal from "../EditModal";
 import logo from "../../logo192.png";
 import { useState } from "react";
 
-//itens individuais
+//funcionario individuais
 function Funcionario(props) {
   //dados funcionario
   const [id, setId] = useState(null);

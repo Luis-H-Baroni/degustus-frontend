@@ -1,7 +1,7 @@
 import Empresa from "./Empresa";
 
 function Empresas(props) {
-  //conjunto de itens do cardapio
+  //conjunto de empresas
   return (
     <div className="row row-cols-2 g-4">
       {props.listaEmpresas.map((empresa) => (

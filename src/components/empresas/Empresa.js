@@ -3,7 +3,7 @@ import EditModal from "../EditModal";
 import logo from "../../logo192.png";
 import { useState } from "react";
 
-//itens individuais
+//empresas individuais
 function Empresa(props) {
   //dados empresa
   const [id, setId] = useState(null);

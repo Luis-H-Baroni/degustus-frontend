@@ -3,7 +3,7 @@ import NovoFuncionarioForm from "../components/funcionarios/NovoFuncionarioForm"
 import { useEffect, useState } from "react";
 
 function FuncionariosPage() {
-  //traz todos os itens
+  //traz todos os funcionarios
   const [loadedPayload, setLoadedPayload] = useState([]);
   useEffect(() => {
     async function fetchData() {

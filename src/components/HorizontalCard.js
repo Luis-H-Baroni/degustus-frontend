@@ -1,4 +1,4 @@
-//formatacao de card
+//formatacao de card horizontal e com imagem
 function HorizontalCard(props) {
   return (
     <div className="card me-3" style={{ width: "400px" }}>
