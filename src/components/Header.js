@@ -24,7 +24,16 @@ function Header() {
         <div className="container-fluid">
           <span className="navbar-brand mb-0 h1">Degustus</span>
           <span className="navbar-brand mb-0 h1">{getCurrentPage()}</span>
+
           <form className="d-flex">
+            <Link to="/comandas">
+              <button className="btn btn-outline-secondary me-2">
+                Comanda
+              </button>
+            </Link>
+            <Link to="/ordens">
+              <button className="btn btn-outline-secondary me-5">Ordem</button>
+            </Link>
             <Link to="/">
               <button className="btn btn-outline-secondary me-2">Home</button>
             </Link>

@@ -4,6 +4,8 @@ import Header from "./components/Header";
 import Cardapio from "./pages/Cardapio";
 import Funcionarios from "./pages/Funcionarios";
 import Empresas from "./pages/Empresas";
+import Comandas from "./pages/Comanda";
+import Ordens from "./pages/Ordem";
 import Home from "./pages/Home";
 
 function App() {
@@ -11,6 +13,9 @@ function App() {
     <div>
       <Header />
 
+      <Routes>
+        <Route path="/comandas" element={<Comandas />} />
+      </Routes>
       <Routes>
         <Route path="/empresas" element={<Empresas />} />
       </Routes>
