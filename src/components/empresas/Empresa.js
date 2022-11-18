@@ -22,6 +22,7 @@ function Empresa(props) {
     await fetch("http://localhost:8080/api/empresa/" + props.id, {
       method: "DELETE",
     });
+    props.fetchData();
   }
 
   //botao editar(abre modal de edicao)
@@ -54,6 +55,7 @@ function Empresa(props) {
       },
     });
     handleClose();
+    props.fetchData();
   }
 
   return (

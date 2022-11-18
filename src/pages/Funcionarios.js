@@ -5,16 +5,17 @@ import { useEffect, useState } from "react";
 function FuncionariosPage() {
   //traz todos os funcionarios
   const [loadedPayload, setLoadedPayload] = useState([]);
+  async function fetchData() {
+    const listaFuncionarios = await fetch(
+      "http://localhost:8080/api/funcionario"
+    );
+    const listaFuncionariosJson = await listaFuncionarios.json();
+    setLoadedPayload(listaFuncionariosJson);
+  }
+
   useEffect(() => {
-    async function fetchData() {
-      const listaFuncionarios = await fetch(
-        "http://localhost:8080/api/funcionario"
-      );
-      const listaFuncionariosJson = await listaFuncionarios.json();
-      setLoadedPayload(listaFuncionariosJson);
-    }
     fetchData();
-  }, [loadedPayload]);
+  }, []);
 
   //abre e fecha o form de novo funcionario
   const [openedForm, setOpenedForm] = useState(false);
@@ -31,13 +32,17 @@ function FuncionariosPage() {
         "Content-Type": "application/json",
       },
     });
+    fetchData();
   }
 
   return (
     <div className="container">
       <div className="row mt-4">
         <div className="col">
-          <Funcionarios listaFuncionarios={loadedPayload} />
+          <Funcionarios
+            listaFuncionarios={loadedPayload}
+            fetchData={fetchData}
+          />
         </div>
         <div className="col-4">
           <button onClick={openForm} className="btn btn-outline-secondary me-2">

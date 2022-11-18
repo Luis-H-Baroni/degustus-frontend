@@ -23,6 +23,7 @@ function ItemCardapio(props) {
     await fetch("http://localhost:8080/api/item/" + props.id, {
       method: "DELETE",
     });
+    props.fetchData();
   }
 
   //botao editar(abre modal de edicao)
@@ -54,6 +55,12 @@ function ItemCardapio(props) {
       },
     });
     handleClose();
+    props.fetchData();
+  }
+
+  function selectBtnHandler() {
+    props.setSelectId(props.id);
+    props.handleCardapioClose();
   }
 
   return (
@@ -66,18 +73,30 @@ function ItemCardapio(props) {
           <span className="card-text">{props.valor}</span>
         </div>
       </Card>
-      <button
-        onClick={deleteBtnHandler}
-        className="btn btn-outline-secondary m-1"
-      >
-        D
-      </button>
-      <button
-        onClick={editBtnHandler}
-        className="btn btn-outline-secondary m-1"
-      >
-        E
-      </button>
+      {!props.readOnly && (
+        <button
+          onClick={deleteBtnHandler}
+          className="btn btn-outline-secondary m-1"
+        >
+          D
+        </button>
+      )}
+      {!props.readOnly && (
+        <button
+          onClick={editBtnHandler}
+          className="btn btn-outline-secondary m-1"
+        >
+          E
+        </button>
+      )}
+      {props.readOnly && (
+        <button
+          onClick={selectBtnHandler}
+          className="btn btn-outline-secondary m-1"
+        >
+          Selecionar
+        </button>
+      )}
       <EditModal show={show} onHide={handleClose} onClick={handleClose}>
         <form onSubmit={saveEditHandler}>
           <div className="mb-3">

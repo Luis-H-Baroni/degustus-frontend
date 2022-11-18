@@ -6,6 +6,7 @@ function Empresas(props) {
     <div className="row row-cols-2 g-4">
       {props.listaEmpresas.map((empresa) => (
         <Empresa
+          fetchData={props.fetchData}
           id={empresa.id}
           nomeFantasia={empresa.nomeFantasia}
           razaoSocial={empresa.razaoSocial}

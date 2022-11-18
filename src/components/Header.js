@@ -15,6 +15,10 @@ function Header() {
         return "Funcionários";
       case "/empresas":
         return "Empresas";
+      case "/gourmet-cozinha":
+        return "Display Cozinha Gourmet ";
+      case "/beer-cozinha":
+        return "Display Cozinha Beer ";
     }
   };
 

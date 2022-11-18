@@ -5,14 +5,15 @@ import { useEffect, useState } from "react";
 function CardapioPage() {
   //traz todos os itens
   const [loadedPayload, setLoadedPayload] = useState([]);
+
+  async function fetchData() {
+    const itensCardapio = await fetch("http://localhost:8080/api/item");
+    const itensCardapioJson = await itensCardapio.json();
+    setLoadedPayload(itensCardapioJson);
+  }
   useEffect(() => {
-    async function fetchData() {
-      const itensCardapio = await fetch("http://localhost:8080/api/item");
-      const itensCardapioJson = await itensCardapio.json();
-      setLoadedPayload(itensCardapioJson);
-    }
     fetchData();
-  }, [loadedPayload]);
+  }, []);
 
   //abre e fecha o form de novo item
   const [openedForm, setOpenedForm] = useState(false);
@@ -29,13 +30,18 @@ function CardapioPage() {
         "Content-Type": "application/json",
       },
     });
+    fetchData();
   }
 
   return (
     <div className="container">
       <div className="row mt-4">
         <div className="col">
-          <Cardapio itensCardapio={loadedPayload} />
+          <Cardapio
+            readOnly={false}
+            itensCardapio={loadedPayload}
+            fetchData={fetchData}
+          />
         </div>
         <div className="col-4">
           <button onClick={openForm} className="btn btn-outline-secondary me-2">
