@@ -6,6 +6,7 @@ function Cardapio(props) {
     <div className="row row-cols-2 g-4">
       {props.listaComandas.map((comanda) => (
         <Comanda
+          fetchData={props.fetchData}
           id={comanda.id}
           valor={comanda.valor}
           dataFechamento={comanda.dataFechamento}

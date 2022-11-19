@@ -1,6 +1,5 @@
 import TextCard from "../TextCard";
 import EditModal from "../EditModal";
-import logo from "../../logo192.png";
 import { useState } from "react";
 
 //funcionario individuais
@@ -23,6 +22,7 @@ function Funcionario(props) {
     await fetch("http://localhost:8080/api/funcionario/" + props.id, {
       method: "DELETE",
     });
+    props.fetchData();
   }
 
   //botao editar(abre modal de edicao)
@@ -56,6 +56,7 @@ function Funcionario(props) {
       },
     });
     handleClose();
+    props.fetchData();
   }
 
   return (

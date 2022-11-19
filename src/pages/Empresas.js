@@ -5,14 +5,15 @@ import { useEffect, useState } from "react";
 function EmpresaPage() {
   //traz todos as empresas
   const [loadedPayload, setLoadedPayload] = useState([]);
+
+  async function fetchData() {
+    const listaEmpresas = await fetch("http://localhost:8080/api/empresa");
+    const listaEmpresasJson = await listaEmpresas.json();
+    setLoadedPayload(listaEmpresasJson);
+  }
   useEffect(() => {
-    async function fetchData() {
-      const listaEmpresas = await fetch("http://localhost:8080/api/empresa");
-      const listaEmpresasJson = await listaEmpresas.json();
-      setLoadedPayload(listaEmpresasJson);
-    }
     fetchData();
-  }, [loadedPayload]);
+  }, []);
 
   //abre e fecha o form de novo empresa
   const [openedForm, setOpenedForm] = useState(false);
@@ -29,13 +30,14 @@ function EmpresaPage() {
         "Content-Type": "application/json",
       },
     });
+    fetchData();
   }
 
   return (
     <div className="container">
       <div className="row mt-4">
         <div className="col">
-          <Empresas listaEmpresas={loadedPayload} />
+          <Empresas listaEmpresas={loadedPayload} fetchData={fetchData} />
         </div>
         <div className="col-4">
           <button onClick={openForm} className="btn btn-outline-secondary me-2">

@@ -6,6 +6,7 @@ function Funcionarios(props) {
     <div className="row row-cols-2 g-4">
       {props.listaFuncionarios.map((funcionario) => (
         <Funcionario
+          fetchData={props.fetchData}
           id={funcionario.id}
           nome={funcionario.nome}
           sobrenome={funcionario.sobrenome}

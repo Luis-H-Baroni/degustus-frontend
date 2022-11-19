@@ -7,12 +7,23 @@ import Empresas from "./pages/Empresas";
 import Home from "./pages/Home/Home.js";
 import Comandas from "./pages/Comanda";
 import Ordens from "./pages/Ordem";
+import CozinhaGourmet from "./pages/CozinhaGourmet";
+import CozinhaBeer from "./pages/CozinhaBeer";
 
 function App() {
   return (
     <div>
       <Header />
 
+      <Routes>
+        <Route path="/beer-cozinha" element={<CozinhaBeer />} />
+      </Routes>
+      <Routes>
+        <Route path="/gourmet-cozinha" element={<CozinhaGourmet />} />
+      </Routes>
+      <Routes>
+        <Route path="/ordens" element={<Ordens empresaFilter={null} />} />
+      </Routes>
       <Routes>
         <Route path="/comandas" element={<Comandas />} />
       </Routes>
