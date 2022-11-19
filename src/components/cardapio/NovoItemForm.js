@@ -1,4 +1,6 @@
-import { useRef } from "react";
+import React from "react";
+import { useRef, useEffect, useState } from "react";
+import { Form } from "react-bootstrap";
 
 //form para cadastrar novos itens
 function NovoItemForm(props) {
@@ -6,6 +8,18 @@ function NovoItemForm(props) {
   const descInputRef = useRef();
   const valorInputRef = useRef();
   const catInputRef = useRef();
+  const empInputRef = useRef();
+  const [empresa, setEmpresa] = useState([]);
+
+  useEffect(() => {
+    console.log('aqui')
+    getEmpresa();   
+  }, []);
+
+  async function getEmpresa(){
+    const empresasSalvas = await fetch("http://localhost:8080/api/empresa");
+    setEmpresa(await empresasSalvas.json());
+  }
 
   function submitHandler(event) {
     event.preventDefault();
@@ -15,6 +29,7 @@ function NovoItemForm(props) {
       descricao: descInputRef.current.value,
       valor: valorInputRef.current.value,
       categoria: catInputRef.current.value,
+      empresaId: empInputRef.current.value,
     };
 
     console.log(itemPayload);
@@ -43,11 +58,20 @@ function NovoItemForm(props) {
       </div>
       <div className="mb-3">
         <label className="form-label">Valor</label>
-        <input className="form-control" id="valor" ref={valorInputRef} />
+        <input className="form-control" id="valor" type="number" min="0" ref={valorInputRef} />
       </div>
       <div className="mb-3">
         <label className="form-label">Categoria</label>
         <input className="form-control" id="categoria" ref={catInputRef} />
+      </div>
+      <div className="mb-3">
+        <Form.Select >
+          <option>Selecione a empresa</option>
+          {empresa.map((emp) => {
+            return (<option ref={empInputRef} value={emp.id}>{emp.nomeFantasia}</option>)
+          })}
+
+        </Form.Select>
       </div>
       <div>
         <button className="btn btn-outline-secondary me-2">Salvar</button>

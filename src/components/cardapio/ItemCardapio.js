@@ -11,7 +11,8 @@ function ItemCardapio(props) {
   const [descricao, setDescricao] = useState("");
   const [valor, setValor] = useState("");
   const [categoria, setCategoria] = useState("");
-
+  const [empresaId, setEmpresa] = useState("");
+  
   //modal
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -31,12 +32,13 @@ function ItemCardapio(props) {
 
     const item = await fetch("http://localhost:8080/api/item/" + props.id);
     const itemJson = await item.json();
-
+    console.log(itemJson);
     setId(itemJson["id"]);
     setNome(itemJson["nome"]);
     setDescricao(itemJson["descricao"]);
     setValor(itemJson["valor"]);
     setCategoria(itemJson["categoria"]);
+    setEmpresa(itemJson["empresaId"]);
 
     console.log(props.id);
   }
@@ -44,7 +46,7 @@ function ItemCardapio(props) {
   //salvar edicao(botao dentro do modal)
   async function saveEditHandler(event) {
     event.preventDefault();
-    const item = { id, nome, descricao, valor, categoria };
+    const item = { id, nome, descricao, valor, categoria, empresaId };
     console.log(item);
     await fetch("http://localhost:8080/api/item/", {
       method: "PATCH",
@@ -56,6 +58,7 @@ function ItemCardapio(props) {
     handleClose();
   }
 
+  
   return (
     <div className="col">
       <Card>
@@ -63,14 +66,14 @@ function ItemCardapio(props) {
         <div className="card-body">
           <h5 className="card-title">{props.nome}</h5>
           <p className="card-text">{props.descricao}</p>
-          <span className="card-text">{props.valor}</span>
+          <span className="card-text">R${props.valor}</span>
         </div>
       </Card>
       <button
         onClick={deleteBtnHandler}
         className="btn btn-outline-secondary m-1"
       >
-        D
+        R
       </button>
       <button
         onClick={editBtnHandler}
@@ -103,6 +106,8 @@ function ItemCardapio(props) {
           <div className="mb-3">
             <label className="form-label">Valor</label>
             <input
+              type="number"
+              min="0"
               className="form-control"
               value={valor}
               onChange={(e) => {
@@ -117,6 +122,16 @@ function ItemCardapio(props) {
               value={categoria}
               onChange={(e) => {
                 setCategoria(e.target.value);
+              }}
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Empresa</label>
+            <input
+              className="form-control"
+              value={empresaId}
+              onChange={(e) => {
+                setEmpresa(e.target.value);
               }}
             />
           </div>
