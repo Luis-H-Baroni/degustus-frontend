@@ -1,6 +1,6 @@
 import OrdemPage from "./Ordem";
 
-function CozinhaDegustusPage() {
+function CozinhaGourmetPage() {
   return (
     <div>
       <OrdemPage empresaFilter={1}></OrdemPage>
@@ -8,4 +8,4 @@ function CozinhaDegustusPage() {
   );
 }
 
-export default CozinhaDegustusPage;
+export default CozinhaGourmetPage;

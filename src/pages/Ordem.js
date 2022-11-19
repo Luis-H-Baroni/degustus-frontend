@@ -27,7 +27,7 @@ function OrdemPage(props) {
     }
     console.log({ listadepois: listaComandasFiltrada });
 
-    const listaOrdensComandas = await Promise.all(
+    let listaOrdensComandas = await Promise.all(
       listaComandasFiltrada.map(async (comanda) => {
         let ordensComandas = {
           comandaId: comanda.id,
@@ -39,10 +39,30 @@ function OrdemPage(props) {
           `http://localhost:8080/api/comanda/${comanda.id}/ordem`
         );
         const responseJson = await response.json();
-        ordensComandas.ordens = responseJson;
+
+        const ordensCompletas = await Promise.all(
+          responseJson.map(async (ordem) => {
+            const item = await fetch(
+              "http://localhost:8080/api/item/" + ordem.itemId
+            );
+            const itemJson = await item.json();
+            return {
+              id: ordem.id,
+              itemId: ordem.itemId,
+              comandaId: ordem.comandaId,
+              quantidade: ordem.quantidade,
+              nome: itemJson.nome,
+            };
+          })
+        );
+
+        console.log(responseJson);
+
+        ordensComandas.ordens = ordensCompletas;
         return ordensComandas;
       })
     );
+    console.log({ lisat: listaOrdensComandas });
 
     console.log(listaOrdensComandas);
 
@@ -57,7 +77,7 @@ function OrdemPage(props) {
     const response = await fetch("http://localhost:8080/api/item/" + itemId);
     const responseJson = await response.json();
     console.log(responseJson.nome);
-    setLoadedItem(responseJson.nome);
+    return responseJson.nome;
   }
   return (
     <div className="container">
@@ -76,13 +96,11 @@ function OrdemPage(props) {
                     </TextCard>
 
                     {comanda.ordens.map((ordem) => {
-                      fetchItem(ordem.itemId);
-                      console.log(loadedItem);
                       return (
                         <Ordem
                           fetchData={fetchData}
                           itemId={ordem.id}
-                          nome={loadedItem}
+                          nome={ordem.nome}
                           quantidade={ordem.quantidade}
                         ></Ordem>
                       );

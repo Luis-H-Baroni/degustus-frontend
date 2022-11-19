@@ -18,7 +18,7 @@ function Ordem(props) {
           <h5 className="card-title">{props.comandaId}</h5>
           <p className="card-text">{props.itemId}</p>
           <p className="card-text">{props.nome}</p>
-          <span className="card-text">{props.quantidade}</span>
+          <span className="card-text">{`Quantidade: ${props.quantidade}`}</span>
         </div>
       </TextCard>
 

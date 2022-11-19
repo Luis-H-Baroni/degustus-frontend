@@ -7,7 +7,8 @@ import Empresas from "./pages/Empresas";
 import Home from "./pages/Home/Home.js";
 import Comandas from "./pages/Comanda";
 import Ordens from "./pages/Ordem";
-import CozinhaDegustus from "./pages/CozinhaDegustus";
+import CozinhaGourmet from "./pages/CozinhaGourmet";
+import CozinhaBeer from "./pages/CozinhaBeer";
 
 function App() {
   return (
@@ -15,7 +16,10 @@ function App() {
       <Header />
 
       <Routes>
-        <Route path="/gourmet-cozinha" element={<CozinhaDegustus />} />
+        <Route path="/beer-cozinha" element={<CozinhaBeer />} />
+      </Routes>
+      <Routes>
+        <Route path="/gourmet-cozinha" element={<CozinhaGourmet />} />
       </Routes>
       <Routes>
         <Route path="/ordens" element={<Ordens empresaFilter={null} />} />
