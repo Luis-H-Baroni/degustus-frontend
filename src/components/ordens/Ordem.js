@@ -4,8 +4,8 @@ import TextCard from "../TextCard";
 function Ordem(props) {
   //botao deletar
   async function deleteBtnHandler() {
-    console.log(props.itemId);
-    await fetch("http://localhost:8080/api/ordem/" + props.itemId, {
+    console.log(props.id);
+    await fetch("http://localhost:8080/api/ordem/" + props.id, {
       method: "DELETE",
     });
     props.fetchData();
