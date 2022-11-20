@@ -15,9 +15,8 @@ function Ordem(props) {
     <div className="col mb-2">
       <TextCard>
         <div className="card-body">
-          <h5 className="card-title">{props.comandaId}</h5>
-          <p className="card-text">{props.itemId}</p>
-          <p className="card-text">{props.nome}</p>
+          <h6 className="card-title">{`Ordem ${props.id}`}</h6>
+          <h5 className="card-text">{props.nome}</h5>
           <span className="card-text">{`Quantidade: ${props.quantidade}`}</span>
         </div>
       </TextCard>

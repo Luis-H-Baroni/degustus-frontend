@@ -1,7 +1,7 @@
 //formatacao de card horizontal e com imagem
 function HorizontalCard(props) {
   return (
-    <div className="card me-3" style={{ width: "400px" }}>
+    <div className="card me-3" style={{ width: "350px" }}>
       <div className="row g-0">
         <div className="col-md-4">
           <img src={props.logo} className="img-fluid rounded-start" alt="..." />

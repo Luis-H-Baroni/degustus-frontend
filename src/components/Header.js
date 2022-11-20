@@ -19,6 +19,14 @@ function Header() {
         return "Display Cozinha Gourmet ";
       case "/beer-cozinha":
         return "Display Cozinha Beer ";
+      case "/beer-bebida":
+        return "Display Bar Beer ";
+      case "/gourmet-bebida":
+        return "Display Bar Gourmet ";
+      case "/comandas":
+        return "Comandas";
+      case "/ordens":
+        return "Ordens";
     }
   };
 

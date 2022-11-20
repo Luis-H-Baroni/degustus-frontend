@@ -4,6 +4,7 @@ import Ordem from "../components/ordens/Ordem";
 
 function OrdemPage(props) {
   const [empresaFilter] = useState(props.empresaFilter);
+  const [itemFilter] = useState(props.itemFilter);
   const [loadedItem, setLoadedItem] = useState("");
   //traz todos os itens
   const [loadedPayload, setLoadedPayload] = useState([]);
@@ -25,6 +26,7 @@ function OrdemPage(props) {
     } else {
       listaComandasFiltrada = listaComandasJson;
     }
+
     console.log({ listadepois: listaComandasFiltrada });
 
     let listaOrdensComandas = await Promise.all(
@@ -46,19 +48,35 @@ function OrdemPage(props) {
               "http://localhost:8080/api/item/" + ordem.itemId
             );
             const itemJson = await item.json();
+            console.log({ itemJson: itemJson });
             return {
               id: ordem.id,
               itemId: ordem.itemId,
               comandaId: ordem.comandaId,
               quantidade: ordem.quantidade,
               nome: itemJson.nome,
+              categoria: itemJson.categoria,
             };
           })
         );
 
-        console.log(responseJson);
+        console.log({ resposnseJson: ordensCompletas });
 
-        ordensComandas.ordens = ordensCompletas;
+        let ordensFiltradas;
+        if (itemFilter) {
+          ordensFiltradas = ordensCompletas.filter((ordem) => {
+            console.log({ OF: ordem.categoria });
+            console.log({ IF: itemFilter });
+            if (ordem.categoria === itemFilter) return { ordem };
+          });
+        }
+
+        if (itemFilter) {
+          ordensComandas.ordens = ordensFiltradas;
+        } else {
+          ordensComandas.ordens = ordensCompletas;
+        }
+
         return ordensComandas;
       })
     );
@@ -99,7 +117,7 @@ function OrdemPage(props) {
                       return (
                         <Ordem
                           fetchData={fetchData}
-                          itemId={ordem.id}
+                          id={ordem.id}
                           nome={ordem.nome}
                           quantidade={ordem.quantidade}
                         ></Ordem>

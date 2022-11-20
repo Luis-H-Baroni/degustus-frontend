@@ -9,12 +9,20 @@ import Comandas from "./pages/Comanda";
 import Ordens from "./pages/Ordem";
 import CozinhaGourmet from "./pages/CozinhaGourmet";
 import CozinhaBeer from "./pages/CozinhaBeer";
+import BarGourmet from "./pages/BarGourmet";
+import BarBeer from "./pages/BarBeer";
 
 function App() {
   return (
     <div>
       <Header />
 
+      <Routes>
+        <Route path="/beer-bebida" element={<BarBeer />} />
+      </Routes>
+      <Routes>
+        <Route path="/gourmet-bebida" element={<BarGourmet />} />
+      </Routes>
       <Routes>
         <Route path="/beer-cozinha" element={<CozinhaBeer />} />
       </Routes>

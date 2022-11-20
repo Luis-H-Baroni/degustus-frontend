@@ -3,7 +3,7 @@ import Empresa from "./Empresa";
 function Empresas(props) {
   //conjunto de empresas
   return (
-    <div className="row row-cols-2 g-4">
+    <div className="row row-cols-lg-2 row-cols-sm-1 g-4">
       {props.listaEmpresas.map((empresa) => (
         <Empresa
           fetchData={props.fetchData}

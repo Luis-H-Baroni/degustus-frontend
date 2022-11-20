@@ -62,7 +62,7 @@ function Empresa(props) {
     <div className="col">
       <HorizontalCard logo={logo}>
         <div className="card-body">
-          <h5 className="card-title">{props.nomeFantasia}</h5>
+          <h5 className="card-title">{`${props.id}. ${props.nomeFantasia}`}</h5>
           <p className="card-text">{props.razaoSocial}</p>
           <span className="card-text">{props.cnpj}</span>
         </div>

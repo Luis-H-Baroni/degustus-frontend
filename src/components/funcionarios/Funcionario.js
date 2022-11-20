@@ -63,7 +63,7 @@ function Funcionario(props) {
     <div className="col">
       <TextCard>
         <div className="card-body">
-          <h5 className="card-title">{props.nome}</h5>
+          <h5 className="card-title">{`${props.id}. ${props.nome}`}</h5>
           <p className="card-text">{props.sobrenome}</p>
           <span className="card-text">{props.usuario}</span>
         </div>

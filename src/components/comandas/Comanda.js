@@ -78,7 +78,7 @@ function Comanda(props) {
           <h5 className="card-title">{`Mesa ${props.mesaId}`}</h5>
           <p className="card-text">{`Funcionario ${props.funcionarioId}`}</p>
           <p className="card-text">{`Estabelecimento ${props.empresaId}`}</p>
-          <p className="card-text">{`Valor ${props.valor}`}</p>
+          <p className="card-text">{`Valor Total R$${props.valor}`}</p>
           {isClosed && <span>{`Fechada em ${props.dataFechamento}`}</span>}
         </div>
       </TextCard>
