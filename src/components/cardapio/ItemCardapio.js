@@ -12,7 +12,8 @@ function ItemCardapio(props) {
   const [valor, setValor] = useState("");
   const [categoria, setCategoria] = useState("");
   const [empresaId, setEmpresa] = useState("");
-  
+  const [url, setImageUrl] = useState("");
+
   //modal
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -33,13 +34,14 @@ function ItemCardapio(props) {
 
     const item = await fetch("http://localhost:8080/api/item/" + props.id);
     const itemJson = await item.json();
-    console.log(itemJson);
+    console.log({ itemJson: itemJson });
     setId(itemJson["id"]);
     setNome(itemJson["nome"]);
     setDescricao(itemJson["descricao"]);
     setValor(itemJson["valor"]);
     setCategoria(itemJson["categoria"]);
     setEmpresa(itemJson["empresaId"]);
+    setImageUrl(itemJson["url"]);
 
     console.log(props.id);
   }
@@ -47,7 +49,7 @@ function ItemCardapio(props) {
   //salvar edicao(botao dentro do modal)
   async function saveEditHandler(event) {
     event.preventDefault();
-    const item = { id, nome, descricao, valor, categoria, empresaId };
+    const item = { id, nome, descricao, valor, categoria, empresaId, url };
     console.log(item);
     await fetch("http://localhost:8080/api/item/", {
       method: "PATCH",
@@ -65,11 +67,14 @@ function ItemCardapio(props) {
     props.handleCardapioClose();
   }
 
-  
   return (
     <div className="col">
       <Card>
-        <img src={logo} className="card-img-top max-width: 50%" alt=""></img>
+        <img
+          src={props.url}
+          className="card-img-top max-width: 50%"
+          alt=""
+        ></img>
         <div className="card-body">
           <h5 className="card-title">{props.nome}</h5>
           <p className="card-text">{props.descricao}</p>
@@ -141,6 +146,16 @@ function ItemCardapio(props) {
               value={categoria}
               onChange={(e) => {
                 setCategoria(e.target.value);
+              }}
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Imagem(URL)</label>
+            <input
+              className="form-control"
+              value={url}
+              onChange={(e) => {
+                setImageUrl(e.target.value);
               }}
             />
           </div>

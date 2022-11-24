@@ -9,14 +9,15 @@ function NovoItemForm(props) {
   const valorInputRef = useRef();
   const catInputRef = useRef();
   const empInputRef = useRef();
+  const urlInputRef = useRef();
   const [empresa, setEmpresa] = useState([]);
 
   useEffect(() => {
-    console.log('aqui')
-    getEmpresa();   
+    console.log("aqui");
+    getEmpresa();
   }, []);
 
-  async function getEmpresa(){
+  async function getEmpresa() {
     const empresasSalvas = await fetch("http://localhost:8080/api/empresa");
     setEmpresa(await empresasSalvas.json());
   }
@@ -30,6 +31,7 @@ function NovoItemForm(props) {
       valor: valorInputRef.current.value,
       categoria: catInputRef.current.value,
       empresaId: empInputRef.current.value,
+      url: urlInputRef.current.value,
     };
 
     console.log(itemPayload);
@@ -58,19 +60,32 @@ function NovoItemForm(props) {
       </div>
       <div className="mb-3">
         <label className="form-label">Valor</label>
-        <input className="form-control" id="valor" type="number" min="0" ref={valorInputRef} />
+        <input
+          className="form-control"
+          id="valor"
+          type="number"
+          min="0"
+          ref={valorInputRef}
+        />
       </div>
       <div className="mb-3">
         <label className="form-label">Categoria</label>
         <input className="form-control" id="categoria" ref={catInputRef} />
       </div>
       <div className="mb-3">
-        <Form.Select >
+        <label className="form-label">Imagem(URL)</label>
+        <input className="form-control" id="url" ref={urlInputRef} />
+      </div>
+      <div className="mb-3">
+        <Form.Select>
           <option>Selecione a empresa</option>
           {empresa.map((emp) => {
-            return (<option ref={empInputRef} value={emp.id}>{emp.nomeFantasia}</option>)
+            return (
+              <option ref={empInputRef} value={emp.id}>
+                {emp.nomeFantasia}
+              </option>
+            );
           })}
-
         </Form.Select>
       </div>
       <div>

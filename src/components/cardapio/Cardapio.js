@@ -10,6 +10,7 @@ function Cardapio(props) {
           setSelectId={props.setSelectId}
           handleCardapioClose={props.handleCardapioClose}
           fetchData={props.fetchData}
+          url={item.url}
           id={item.id}
           nome={item.nome}
           valor={item.valor}
